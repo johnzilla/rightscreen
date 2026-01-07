@@ -28,3 +28,7 @@ Then visit http://localhost:8080
 - Vanilla HTML/CSS/JS
 - Canvas API for image generation
 - No build tools or dependencies
+
+## License
+
+MIT
