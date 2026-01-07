@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate lockscreen images to assert your 4th Amendment rights">
+    <title>RightScreen - 4th Amendment Lockscreen Generator</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>RightScreen</h1>
+            <p class="subtitle">4th Amendment Lockscreen Generator</p>
+        </header>
+
+        <section class="preview-section">
+            <div class="canvas-container">
+                <canvas id="preview-canvas"></canvas>
+            </div>
+        </section>
+
+        <section class="controls">
+            <div class="control-group">
+                <label for="device-select">Device</label>
+                <select id="device-select"></select>
+            </div>
+
+            <div class="control-group">
+                <label>Background</label>
+                <div class="background-options">
+                    <div class="option-label">Solid Colors</div>
+                    <div id="color-swatches" class="swatches"></div>
+                    <div class="option-label">Gradients</div>
+                    <div id="gradient-swatches" class="swatches"></div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="text-select">Message</label>
+                <select id="text-select"></select>
+            </div>
+
+            <div class="control-group">
+                <label>Font Style</label>
+                <div id="font-options" class="font-options"></div>
+            </div>
+
+            <button id="download-btn" class="download-btn">Download Image</button>
+        </section>
+
+        <section class="info">
+            <h2>About</h2>
+            <p>The 4th Amendment protects against unreasonable searches and seizures. This tool generates lockscreen images that clearly communicate your awareness of and commitment to these constitutional rights.</p>
+            <h3>How to set your lockscreen:</h3>
+            <ul>
+                <li><strong>iPhone:</strong> Settings &gt; Wallpaper &gt; Add New Wallpaper &gt; Photos</li>
+                <li><strong>Android:</strong> Settings &gt; Wallpaper &gt; Lock screen &gt; My photos</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>RightScreen is provided for informational purposes. This is not legal advice.</p>
+        </footer>
+    </main>
+
+    <script src="js/devices.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/canvas.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
