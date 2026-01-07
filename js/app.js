@@ -14,6 +14,10 @@ class RightScreenApp {
         this.textSelect = document.getElementById('text-select');
         this.fontOptions = document.getElementById('font-options');
         this.downloadBtn = document.getElementById('download-btn');
+        this.shareAppBtn = document.getElementById('share-app-btn');
+        this.shareImageBtn = document.getElementById('share-image-btn');
+
+        this.appUrl = window.location.href.split('?')[0];
 
         this.state = {
             deviceId: 'iphone-15-pro',
@@ -168,6 +172,14 @@ class RightScreenApp {
             const device = getDeviceById(this.state.deviceId);
             this.renderer.downloadImage(device.name);
         });
+
+        this.shareAppBtn.addEventListener('click', () => {
+            this.shareApp();
+        });
+
+        this.shareImageBtn.addEventListener('click', () => {
+            this.shareImage();
+        });
     }
 
     selectBackground(id) {
@@ -208,6 +220,42 @@ class RightScreenApp {
             text: textOption.text,
             font
         });
+    }
+
+    shareApp() {
+        const text = 'Assert your 4th Amendment rights with a custom lockscreen';
+        const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(this.appUrl)}`;
+        window.open(twitterUrl, '_blank', 'width=550,height=420');
+    }
+
+    async shareImage() {
+        const device = getDeviceById(this.state.deviceId);
+        const filename = `rightscreen-${device.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.png`;
+
+        try {
+            const blob = await new Promise(resolve => this.canvas.toBlob(resolve, 'image/png'));
+            const file = new File([blob], filename, { type: 'image/png' });
+
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                await navigator.share({
+                    files: [file],
+                    title: 'RightScreen',
+                    text: 'My 4th Amendment lockscreen'
+                });
+            } else {
+                this.shareImageFallback();
+            }
+        } catch (err) {
+            if (err.name !== 'AbortError') {
+                this.shareImageFallback();
+            }
+        }
+    }
+
+    shareImageFallback() {
+        const device = getDeviceById(this.state.deviceId);
+        this.renderer.downloadImage(device.name);
+        alert('Image downloaded! Open X/Twitter to share it with your post.');
     }
 
     saveState() {

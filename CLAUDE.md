@@ -52,3 +52,4 @@ Open http://localhost:8080
 - Safe zones prevent text from overlapping camera cutouts (notch, dynamic island, punch-hole)
 - Preview uses sticky positioning to remain visible while scrolling
 - State persists to localStorage
+- Share Image uses Web Share API on mobile (falls back to download + prompt on desktop)

@@ -20,6 +20,7 @@ Then visit http://localhost:8080
 - Multiple 4th Amendment text options
 - 3 font styles
 - PNG download with device-appropriate resolution
+- Share to X/Twitter (app link or image via Web Share API)
 - State persistence via localStorage
 
 ## Tech Stack
